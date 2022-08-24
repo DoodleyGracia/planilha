@@ -1,7 +1,7 @@
 const express = require('express');
 const TransacoesRepositorio = require("./transacoes-repositorio")
 const app = express()
-
+app.use(express.json())
 const port = 3000;
 
 app.use(express.static(`${__dirname}/public`))
@@ -10,19 +10,15 @@ app.get('/Hello', (req, res) => {
     const repositorio = new TransacoesRepositorio()
     const transacoes = repositorio.listastransacoes()
     res.send(transacoes)
-app.get('/criar-transacao',(req, res) => {
+})
+app.post('/criar-transacao',(req, res) => {
     const repositorio = new TransacoesRepositorio()
-    const transacao = {
-        valor: 20,
-        descricao: "bonbon"
-    }
+    const transacao = req.body
+    repositorio.criartransacao(transacao)
+      res.status(201).send(transacao)
+    
 })
   
-
-
-    res.send("Hello seja bem vindo ao meu word")
-})
-
 app.listen(port, () => {
-    console.log(`servidor ouvindo na porta ${port}`);
+    console.log(`servidor ouvindo na porta teste ${port}`);
 });

@@ -1,0 +1,4 @@
+POST https://3000-doodleygracia-planilha-j2t4jx6jb2i.ws-us63.gitpod.io/criar-transacao
+content-type: application/json
+
+{"valor": 10}
