@@ -1,23 +1,24 @@
-let 'transacoes = {
+let transacoes = {
     transacoes: [
         {
             valor: 20,
-            decricao: "bonbon"
+            descricao: "bonbon", categoria: "despesa"
         },
         {
             valor: 5,
-            descricoa: "doce"
+            descricao: "doce", categoria: "despesa"
         }
-    ]
+    ],
+    saldo: 0
 }
 class TransacoesRepositorio {
-  
+
     listastransacoes() {
         return transacoes
     }
-    criartransacao(transacao){
-     transacoes.transacoes.push(transacao)
-     return transacoes
+    criartransacao(transacao) {
+        transacoes.transacoes.push(transacao)
+        return transacoes
     }
 }
 
