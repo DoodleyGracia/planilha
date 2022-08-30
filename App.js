@@ -1,14 +1,23 @@
+require('dotenv/config')
 const express = require('express');
-const TransacoesRepositorio = require("./transacoes-repositorio")
+const TransacoesRepositorio = require("./infra/sql-transacoes-repositorio")
+
 const app = express()
-app.use(express.json())
+
 const port = 3000;
 
+funtion mostraRep(rep) {
+    console.log()
+}
+console.log(process.env)
+//Permite acessar o red body
+app.use(express.json())
+//"serve" 
 app.use(express.static(`${__dirname}/public`))
 
-app.get('/transacoes', (req, res) => {
+app.get('/transacoes', async (req, res) => {
     const repositorio = new TransacoesRepositorio()
-    const transacoes = repositorio.listastransacoes()
+    const transacoes = await repositorio.listastransacoes()
 
 
     let saldo = 0
@@ -26,10 +35,10 @@ app.get('/transacoes', (req, res) => {
     transacoes.saldo = saldo
     res.send(transacoes)
 })
-app.post('/transacoes', (req, res) => {
+app.post('/transacoes', async(req, res) => {
     const repositorio = new TransacoesRepositorio()
     const transacao = req.body
-    repositorio.criartransacao(transacao)
+   await repositorio.criartransacao(transacao)
     res.status(201).send(transacao)
 
 
