@@ -6,9 +6,8 @@ const app = express()
 
 const port = 3000;
 
-funtion mostraRep(rep) {
-    console.log()
-}
+
+
 console.log(process.env)
 //Permite acessar o red body
 app.use(express.json())
@@ -35,10 +34,10 @@ app.get('/transacoes', async (req, res) => {
     transacoes.saldo = saldo
     res.send(transacoes)
 })
-app.post('/transacoes', async(req, res) => {
+app.post('/transacoes', async (req, res) => {
     const repositorio = new TransacoesRepositorio()
     const transacao = req.body
-   await repositorio.criartransacao(transacao)
+    await repositorio.criarTransacao(transacao)
     res.status(201).send(transacao)
 
 
