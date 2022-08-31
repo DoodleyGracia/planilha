@@ -1,6 +1,6 @@
 require('dotenv/config')
 const express = require('express');
-const TransacoesRepositorio = require("./infra/sql-transacoes-repositorio")
+const sqlTransacoesRepositorio = require("./infra/sql-transacoes-repositorio")
 
 const app = express()
 
@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(express.static(`${__dirname}/public`))
 
 app.get('/transacoes', async (req, res) => {
-    const repositorio = new TransacoesRepositorio()
+    const repositorio = new sqlTransacoesRepositorio()
     const transacoes = await repositorio.listastransacoes()
 
 
@@ -35,7 +35,7 @@ app.get('/transacoes', async (req, res) => {
     res.send(transacoes)
 })
 app.post('/transacoes', async (req, res) => {
-    const repositorio = new TransacoesRepositorio()
+    const repositorio = new sqlTransacoesRepositorio()
     const transacao = req.body
     await repositorio.criarTransacao(transacao)
     res.status(201).send(transacao)

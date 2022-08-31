@@ -11,14 +11,15 @@ class SqlTransacoesRepositorio {
         }
     }
     async criarTransacao(transacao) {
-        const consulta = `INSERT INTO transacoes(valor, descricao, cetegoria)
-        VALEUS ( $1,$2,$3) RETUNING*`;
+        const consulta = `INSERT INTO transacoes(valor, descricao, categoria)
+        VALUES ($1, $2, $3) RETURNING*`;
         const valores = [
             transacao.valor,
-            tansacao.descricao,
+            transacao.descricao,
             transacao.categoria
         ];
         await pool.query(consulta, valores)
+
 
 
     }
